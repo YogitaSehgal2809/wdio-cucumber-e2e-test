@@ -31,3 +31,34 @@ Then(/^The URL should match with (.*)$/,async function(expectedURL){
     chai.expect(actualUrl).to.equal(expectedURL)
 
 })
+
+
+Given(/^A web page is opened$/, async function(){
+    await browser.url("/inputs")
+    await browser.setTimeout({implicit:15000, pageLoad:10000})
+    await browser.maximizeWindow()
+   
+})
+
+When(/^Perform Web Interactions$/, async function(){
+    let element=await $(`[type=number]`)
+    let num=12345
+    let strNum=num.toString()
+    // adds the value after clearing the text field
+    // await element.setValue(12345)
+    
+    // Used to pause
+    // await browser.debug()
+
+    // adds the value without clearing the text field
+    // await element.addValue(12345)
+
+    await element.click()
+    for(let i=0;i<strNum.length;i++)
+    {
+        let charStr=strNum.charAt(i)
+        await browser.pause(1000)
+        await browser.keys(charStr)
+    }
+
+  })
