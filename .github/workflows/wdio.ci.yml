@@ -7,6 +7,7 @@ on:
   pull_request:
     branches:
       - master
+  workflow_dispatch:
 
 jobs:
   build:
@@ -30,5 +31,8 @@ jobs:
       - name: Run Tests
         run: npx wdio run wdio.conf.ts
 
+      - name: Run a one-line script
+        run: echo Hello, World!
+        
       - name: Build Project
         run: npm run build
