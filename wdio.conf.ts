@@ -52,14 +52,22 @@ export const config: WebdriverIO.Config = {
     // Sauce Labs platform configurator - a great tool to configure your capabilities:
     // https://saucelabs.com/platform/platform-configurator
     //
-    capabilities: [{
-        browserName: 'chrome',
-        'goog:chromeOptions': {
-            args: [
-                "--disable-popup-blocking",
-                "--disable-infobars"
-            ]}
-    }],
+ capabilities: [
+  {
+    maxInstances: 1,
+    browserName: 'chrome',
+    'goog:chromeOptions': {
+      args: [
+        '--headless', // Run without UI
+        '--no-sandbox', // Prevent permission issues
+        '--disable-dev-shm-usage', // Fix crashes due to limited memory
+        '--disable-popup-blocking',
+        '--disable-infobars',
+        '--remote-debugging-port=9222' // Prevent session issues
+      ]
+    }
+  }
+],
     automationProtocol: 'webdriver',
 
     //
