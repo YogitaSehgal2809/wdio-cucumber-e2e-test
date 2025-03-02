@@ -1,4 +1,4 @@
-import { Given, When, Then } from "@wdio/cucumber-framework";
+import { Given, Then } from "@wdio/cucumber-framework";
 import * as chai from "chai"
 
 Given(/^A web page is opened$/, async function(){
