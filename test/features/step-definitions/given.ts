@@ -1,5 +1,5 @@
 import { Given } from "@wdio/cucumber-framework";
-import * as chai from "chai";
+import * as _chai from "chai";
 
 Given(/^User is logged in to Sauce demo website$/, async function (){
     // Login to Inventory app 
