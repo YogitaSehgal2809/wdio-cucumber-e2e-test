@@ -46,7 +46,7 @@ export const config: WebdriverIO.Config = {
     // and 30 processes will get spawned. The property handles how many capabilities
     // from the same test should run tests.
     //
-    // maxInstances: 10,
+    maxInstances: 10,
     //
     // If you have trouble getting all important capabilities together, check out the
     // Sauce Labs platform configurator - a great tool to configure your capabilities:
@@ -54,7 +54,7 @@ export const config: WebdriverIO.Config = {
     //
  capabilities: [
   {
-    maxInstances: 1,
+    // maxInstances: 1,
     browserName: 'chrome',
     'goog:chromeOptions': {
       args: [
