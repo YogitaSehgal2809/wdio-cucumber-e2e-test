@@ -56,16 +56,16 @@ export const config: WebdriverIO.Config = {
   {
     // maxInstances: 1,
     browserName: 'chrome',
-    'goog:chromeOptions': {
-      args: [
-        '--headless', // Run without UI
-        '--no-sandbox', // Prevent permission issues
-        '--disable-dev-shm-usage', // Fix crashes due to limited memory
-        '--disable-popup-blocking',
-        '--disable-infobars',
-        '--remote-debugging-port=9222' // Prevent session issues
-      ]
-    }
+    // 'goog:chromeOptions': {
+    //   args: [
+    //     '--headless', // Run without UI
+    //     '--no-sandbox', // Prevent permission issues
+    //     '--disable-dev-shm-usage', // Fix crashes due to limited memory
+    //     '--disable-popup-blocking',
+    //     '--disable-infobars',
+    //     '--remote-debugging-port=9222' // Prevent session issues
+    //   ]
+    // }
   }
 ],
     automationProtocol: 'webdriver',

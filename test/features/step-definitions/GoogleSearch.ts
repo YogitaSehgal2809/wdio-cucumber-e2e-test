@@ -26,6 +26,8 @@ await element.click()
 
 Then(/^The URL should match with (.*)$/,async function(expectedURL){
     console.log(`expected URL: ${expectedURL}`);
+    await browser.waitUntil(async function(){ return await browser.getTitle()===`WebdriverIO · Next-gen browser and mobile automation test framework for Node.js | WebdriverIO`}
+,{timeout:20000,interval:500,timeoutMsg:`WDIO Web page loading failed>> ${await browser.getTitle()}`})
     let actualUrl=await browser.getUrl()
     console.log(actualUrl);
     chai.expect(actualUrl).to.equal(expectedURL)

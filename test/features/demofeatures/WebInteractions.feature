@@ -11,6 +11,10 @@ Feature: Web Interactions
         # Then Handle File Upload
         # Then Handle Frames and use keyboard keys
         # Then Perform Scrolling
+        # Then Handle Web Table
+        # Then Handle Advanced Scrolling
+        Then Handle timeouts
+
 
         Examples:
             | testID  | 
