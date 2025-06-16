@@ -6,9 +6,13 @@
   "type": "module",
   "scripts": {
     "test": "npx wdio wdio.conf.ts",
-    "demo": "npx wdio wdio.conf.ts --cucumberOpts.tagExpression=`@demo",
     "wdio": "wdio run ./wdio.conf.ts",
-    "build": "tsc"
+    "build": "tsc",
+    "test:debug": "export HEADLESS=N && export DEBUG=Y && npx wdio config/wdio.test.conf.ts --cucumberOpts.tagExpression='@demo'",
+    "test:demo": "export HEADLESS=N && export DEBUG=N && npx wdio config/wdio.test.conf.ts --cucumberOpts.tagExpression='@demo'",
+    "test:smoke": "export HEADLESS=Y && export DEBUG=N && npx wdio config/wdio.test.conf.ts --cucumberOpts.tagExpression='@smoke'",
+    "uat:demo": "export HEADLESS=N && export DEBUG=N && npx wdio config/wdio.uat.conf.ts --cucumberOpts.tagExpression='@demo'",
+    "uat:smoke": "export HEADLESS=Y && export DEBUG=N && npx wdio config/wdio.uat.conf.ts --cucumberOpts.tagExpression='@smoke'"
   },
   "keywords": [
     "wdio",
@@ -24,7 +28,8 @@
     "@wdio/cucumber-framework": "^9.9.0",
     "@wdio/local-runner": "^9.9.1",
     "@wdio/spec-reporter": "^9.9.0",
-    "chai": "^5.2.0"
+    "chai": "^5.2.0",
+    "dotenv": "^16.4.7"
   },
   "dependencies": {
     "ts-node": "^10.9.2"

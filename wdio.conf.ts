@@ -1,3 +1,7 @@
+import dotenv from "dotenv"
+dotenv.config()
+let headless=process.env.HEADLESS
+let debug=process.env.DEBUG
 export const config: WebdriverIO.Config = {
     //
     // ====================
@@ -56,16 +60,18 @@ export const config: WebdriverIO.Config = {
   {
     // maxInstances: 1,
     browserName: 'chrome',
-    // 'goog:chromeOptions': {
-    //   args: [
-    //     '--headless', // Run without UI
-    //     '--no-sandbox', // Prevent permission issues
-    //     '--disable-dev-shm-usage', // Fix crashes due to limited memory
+    'goog:chromeOptions': {
+      args:headless.toUpperCase()==="Y"? [
+        '--headless', // Run without UI
+        '--no-sandbox', // Prevent permission issues
+        '--disable-dev-shm-usage', // Fix crashes due to limited memory
+        '--window-size=1920,1080'
     //     '--disable-popup-blocking',
     //     '--disable-infobars',
+    //     '--disable-web-security' // handles SSL
     //     '--remote-debugging-port=9222' // Prevent session issues
-    //   ]
-    // }
+      ]:[]
+    }
   }
 ],
     automationProtocol: 'webdriver',
@@ -77,7 +83,7 @@ export const config: WebdriverIO.Config = {
     // Define all options that are relevant for the WebdriverIO instance here
     //
     // Level of logging verbosity: trace | debug | info | warn | error | silent
-    logLevel: 'error',
+    logLevel: debug.toUpperCase()==='Y' ?'info':'error',
     //
     // Set specific log levels per logger
     // loggers:
@@ -249,8 +255,10 @@ export const config: WebdriverIO.Config = {
      * @param {ITestCaseHookParameter} world    world object containing information on pickle and test step
      * @param {object}                 context  Cucumber World object
      */
-    // beforeScenario: function (world, context) {
-    // },
+    beforeScenario: function (world, context) {
+      // print in console
+      console.log(`World Object>> ${JSON.stringify(world)}`);
+    },
     /**
      *
      * Runs before a Cucumber Step.
@@ -271,8 +279,16 @@ export const config: WebdriverIO.Config = {
      * @param {number}             result.duration  duration of scenario in milliseconds
      * @param {object}             context          Cucumber World object
      */
-    // afterStep: function (step, scenario, result, context) {
-    // },
+    afterStep: async function (step, scenario, result, context) {
+      console.log(`Step>> ${JSON.stringify(step)}`);
+      console.log(`Step>> ${JSON.stringify(scenario)}`);
+      console.log(`Step>> ${JSON.stringify(result)}`);
+
+      // take screenshot if a step fails
+      if(!result.passed){
+        await browser.takeScreenshot()
+      }
+    },
     /**
      *
      * Runs after a Cucumber Scenario.

@@ -1,7 +1,9 @@
 import { Then } from "@wdio/cucumber-framework";
 import * as chai from "chai";
 
-Then(/^Inventory page should list (.*) products$/, async function(numberofproducts){
+Then(/^Inventory page should (.*)\s?list (.*) products$/, async function(condition,numberofproducts){
+    console.log(`App ID is>> ${this.appId}`);
+    // throw Error(`Failed..`)
     // We need to check if the value in parameter is valid
     if(!numberofproducts) throw Error(`Invalid number provided ${numberofproducts}`)
     let prodArr=await $$(`.inventory_item`)
@@ -22,13 +24,13 @@ Then(/^Inventory page should list (.*) products$/, async function(numberofproduc
             priceStrArr.push(priceStr)
         }
 
-        console.log(`Price with $ ${priceStrArr}`)
+        // console.log(`Price with $ ${priceStrArr}`)
 
         // convert string to number and replace $
         // iterate through array perform an action and get a new array - map function
         // in place of parseInt or parseFloat , you can use unary +
         priceNumArr=priceStrArr.map(ele => +(ele.replace("$","")))
-        console.log(`Price ${priceNumArr}`)
+        // console.log(`Price ${priceNumArr}`)
 
         // filter will filter value based on given condition
         let invalidPriceArr=priceNumArr.filter(ele=> ele<=0)
