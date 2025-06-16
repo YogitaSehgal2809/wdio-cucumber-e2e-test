@@ -1,6 +1,6 @@
 Feature: Web Interactions
-    # @demo
-    Scenario Outline: Demo Textbox Interactions
+    # @smoke
+    Scenario Outline: <TestID>: Demo Textbox Interactions
         Given A web page is opened
         # Then Perform Textbox Interactions
         # Then Perform Dropdown Interactions
@@ -13,11 +13,10 @@ Feature: Web Interactions
         # Then Perform Scrolling
         # Then Handle Web Table
         # Then Handle Advanced Scrolling
-        Then Handle timeouts
 
 
         Examples:
-            | testID  | 
+            | TestID  | 
             | WebDemo_TC001 | 
 
 

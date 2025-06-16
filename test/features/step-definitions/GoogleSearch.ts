@@ -19,7 +19,7 @@ When(/^Search with (.*)$/, async function(SearchItem){
 
 Then(/^Click on first search result$/,async function(){
 await browser.pause(10000)   
-let element= $(`<h3>`)
+let element= await $(`<h3>`)
 await element.click()
 
 })
